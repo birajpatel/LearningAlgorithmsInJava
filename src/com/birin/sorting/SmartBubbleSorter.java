@@ -22,3 +22,7 @@ public class SmartBubbleSorter implements Sorter {
 		Utils.printIntArray(data);
 	}
 }
+
+// Similar to bubble sort but only smart step is checking if in in pass there
+// was any swap performed or not, if not break the main loop as it indicates
+// everything is sorted.

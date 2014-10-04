@@ -19,3 +19,6 @@ public class BubbleSorter implements Sorter {
 		Utils.printIntArray(data);
 	}
 }
+
+// Compare two element at a time & move highest element at end so array gets
+// sorted 1 by 1 from end.
