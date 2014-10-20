@@ -40,6 +40,7 @@ public class Utils {
 
 	public static final int[] getFixData() {
 		final int[] FIX = new int[] { 62, 52, 82, 94, 93 };
+		System.out.print("FIX Input: ");
 		printIntArray(FIX);
 		return FIX;
 	}
