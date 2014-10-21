@@ -1,13 +1,11 @@
 package com.birin.main;
 
-import com.birin.sorting.HeapSorter;
+import com.birin.datastructures.BinarySearchTree;
 
 public class Main {
 
 	public static void main(String[] args) {
-		int[] data = Utils.getHugeRandomData();
-		new HeapSorter().sort(data);
-		System.out.println("Done");
-		Utils.printIntArray(data);
+		int[] data = /*Utils.getRandomData()*/{16 ,61, 28, 64 ,0 ,44 ,91, 27, 43};
+		new BinarySearchTree().main(data);
 	}
 }
