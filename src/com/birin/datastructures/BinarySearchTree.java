@@ -10,6 +10,23 @@ public class BinarySearchTree {
 	public void main(int[] input) {
 		createBST(input);
 		System.out.println(TreePrinter.getString(this));
+		remove(66);
+		System.out.println(TreePrinter.getString(this));
+	}
+
+	private void remove(int nodeValue) {
+		Node parent = treeRoot;
+		while (parent.isLeafNode() == false) {
+			System.out.println("biraj parent Value " + parent.data);
+			if (parent.isDataLesserThan(nodeValue)) {
+				parent = parent.left;
+			} else if (parent.isDataGreaterThan(nodeValue)) {
+				parent = parent.right;
+			} else {
+				parent.parent.left = null;
+				parent.parent.right = null;
+			}
+		}
 	}
 
 	private void createBST(int[] input) {
@@ -24,27 +41,19 @@ public class BinarySearchTree {
 	}
 
 	private void insertAtCorrectPosition(int input, Node parent) {
-		System.out.print("biraj input : " + input + " parent data " + parent.data + " ");
-		if (parent.isDataLesserThanOrEqualto(input)) {
-			System.out.print("left ");
+		if (parent.isDataLesserThan(input)) {
 			if (parent.isLeftEmpty()) {
-				System.out.print("insert ");
 				parent.left = Node.createNodeInstance(input, parent);
 			} else {
-				System.out.println("sub tree ");
 				insertAtCorrectPosition(input, parent.left);
 			}
 		} else {
-			System.out.print("right ");
 			if (parent.isRightEmpty()) {
-				System.out.print("insert ");
 				parent.right = Node.createNodeInstance(input, parent);
 			} else {
-				System.out.println("sub tree ");
 				insertAtCorrectPosition(input, parent.right);
 			}
 		}
-		System.out.println();
 	}
 }
 
@@ -79,8 +88,8 @@ class Node {
 		return parent == null;
 	}
 
-	boolean isDataLesserThanOrEqualto(int data) {
-		return this.data >= data;
+	boolean isDataLesserThan(int data) {
+		return this.data > data;
 	}
 
 	boolean isDataGreaterThan(int data) {
