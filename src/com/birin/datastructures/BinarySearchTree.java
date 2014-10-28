@@ -15,16 +15,21 @@ public class BinarySearchTree {
 	}
 
 	private void remove(int nodeValue) {
-		Node parent = treeRoot;
-		while (parent.isLeafNode() == false) {
-			System.out.println("biraj parent Value " + parent.data);
-			if (parent.isDataLesserThan(nodeValue)) {
-				parent = parent.left;
-			} else if (parent.isDataGreaterThan(nodeValue)) {
-				parent = parent.right;
+		Node pointer = treeRoot;
+		while (pointer != null) {
+			System.out.println("biraj parent Value " + pointer.data);
+			if (pointer.isDataLesserThan(nodeValue)) {
+				pointer = pointer.left;
+			} else if (pointer.isDataGreaterThan(nodeValue)) {
+				pointer = pointer.right;
 			} else {
-				parent.parent.left = null;
-				parent.parent.right = null;
+				if (pointer.isLeafNode()) {
+					pointer.parent.left = null;
+					pointer.parent.right = null;
+				} else if (pointer.isOnlyLeftPresent()) {
+					
+				}
+				pointer = null;
 			}
 		}
 	}
@@ -94,6 +99,14 @@ class Node {
 
 	boolean isDataGreaterThan(int data) {
 		return this.data < data;
+	}
+
+	boolean isOnlyLeftPresent() {
+		return isLeftEmpty() == false && isRightEmpty() == true;
+	}
+
+	boolean isOnlyRightPresent() {
+		return isRightEmpty() == false && isLeftEmpty() == true;
 	}
 }
 
