@@ -1,7 +1,7 @@
 LearningAlgorithmsInJava
 ========================
 
-This is a learning project.
+This is a self learning project. 
 
 Links
 =====
