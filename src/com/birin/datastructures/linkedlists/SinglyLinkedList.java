@@ -8,7 +8,8 @@ public class SinglyLinkedList {
 		createSinglyLinkedList(data);
 		printList();
 		System.out.println("Size " + getLinkedListSize());
-		delete(10);
+		delete(9);
+		printList();
 	}
 
 	private void createSinglyLinkedList(int[] data) {
@@ -19,7 +20,7 @@ public class SinglyLinkedList {
 
 	private void addItemInLinkedList(int insertPosition, int nodeData) {
 		int listSize = getLinkedListSize();
-		if (insertPosition < 0 || insertPosition > listSize) {
+		if (insertPosition < 0 || insertPosition > listSize + 1) {
 			System.out.println("Invalid position to insert:" + insertPosition);
 			return;
 		}
@@ -53,14 +54,27 @@ public class SinglyLinkedList {
 			System.out.print(getNodeData(current) + "->");
 			current = current.getNext();
 		}
-		System.out.println(getNodeData(headNode));
+		System.out.println();
 	}
 
 	public void delete(int deletePosition) {
 		int listSize = getLinkedListSize();
-		if (deletePosition < 0 || deletePosition > listSize) {
+		if (listSize == 0 || (deletePosition < 0 || deletePosition >= listSize)) {
 			System.out.println("Invalid position to delete:" + deletePosition);
 			return;
+		}
+		if (deletePosition == 0) {
+			Node currentHead = headNode;
+			headNode = currentHead.getNext();
+			currentHead = null;
+		} else {
+			Node previousNode = headNode;
+			for (int index = 0; index < deletePosition - 1; index++) {
+				previousNode = previousNode.getNext();
+			}
+			Node currentNode = previousNode.getNext();
+			previousNode.setNext(currentNode.getNext());
+			currentNode = null;
 		}
 	}
 
