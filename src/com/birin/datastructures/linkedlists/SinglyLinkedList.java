@@ -8,7 +8,7 @@ public class SinglyLinkedList {
 		createSinglyLinkedList(data);
 		printList();
 		System.out.println("Size " + getLinkedListSize());
-		delete(9);
+		addItemInLinkedList(0, 709);
 		printList();
 	}
 
@@ -25,7 +25,8 @@ public class SinglyLinkedList {
 			return;
 		}
 		Node nodeToInsert = new Node(nodeData);
-		if (headNode == null) {
+		if (insertPosition == 0) {
+			nodeToInsert.setNext(headNode);
 			headNode = nodeToInsert;
 		} else {
 			Node previousNode = headNode;

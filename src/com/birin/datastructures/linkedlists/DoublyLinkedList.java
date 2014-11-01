@@ -20,15 +20,37 @@ public class DoublyLinkedList {
 	}
 
 	private static String getNodeData(Node node) {
-		if (null != node) {
-			return node.toString();
-		}
-		return "";
+		return node == null ? "" : node.toString();
 	}
 
 	private void createDoublyLinkedList(int[] data) {
 		for (int index = 0; index < data.length; index++) {
 			addItemInLinkedList(index, data[index]);
+		}
+	}
+
+	public void delete(int deletePosition) {
+		int listSize = getLinkedListSize();
+		if (listSize == 0 || (deletePosition < 0 || deletePosition >= listSize)) {
+			System.out.println("Invalid position to delete:" + deletePosition);
+			return;
+		}
+		if (deletePosition == 0) {
+			Node currentHead = headNode;
+			headNode = currentHead.getRight();
+			currentHead = null;
+		} else {
+			Node previousNode = headNode;
+			for (int index = 0; index < deletePosition - 1; index++) {
+				previousNode = previousNode.getRight();
+			}
+			Node currentNode = previousNode.getRight();
+			previousNode.setRight(currentNode.getRight());
+			Node nextNode = currentNode.getRight();
+			if (null != nextNode) {
+				nextNode.setLeft(currentNode.getLeft());
+			}
+			currentNode = null;
 		}
 	}
 
@@ -39,7 +61,11 @@ public class DoublyLinkedList {
 			return;
 		}
 		Node nodeToInsert = new Node(nodeData);
-		if (headNode == null) {
+		if (insertPosition == 0) {
+			nodeToInsert.setRight(headNode);
+			if(headNode != null){
+				headNode.setLeft(nodeToInsert);
+			}
 			headNode = nodeToInsert;
 		} else {
 			Node previousNode = headNode;
@@ -97,7 +123,7 @@ public class DoublyLinkedList {
 
 		@Override
 		public String toString() {
-			return Integer.toString(data);
+			return Integer.toString(getData());
 		}
 	}
 
