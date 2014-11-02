@@ -24,8 +24,18 @@ public class CircularLinkedList {
 			return;
 		}
 		Node nodeToInsert = new Node(dataTobeInserted);
-		if (headNode == null) {
-			headNode = nodeToInsert;
+		if (insertPosition == 0) {
+			if (headNode == null) {
+				headNode = nodeToInsert;
+			} else {
+				Node lastNode = headNode;
+				while (lastNode.getNext() != headNode) {
+					lastNode = lastNode.getNext();
+				}
+				nodeToInsert.setNext(headNode);
+				lastNode.setNext(nodeToInsert);
+				headNode = nodeToInsert;
+			}
 		} else {
 			Node previousNode = headNode;
 			for (int index = 0; index < insertPosition - 1; index++) {
