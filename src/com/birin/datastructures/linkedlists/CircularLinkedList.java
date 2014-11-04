@@ -9,6 +9,8 @@ public class CircularLinkedList {
 		printLinkedList();
 		addItemInLinkedList(0, 709);
 		printLinkedList();
+		deleteLastNode();
+		printLinkedList();
 	}
 
 	private void createCircularLinkedList(int[] data) {
@@ -44,6 +46,16 @@ public class CircularLinkedList {
 			nodeToInsert.setNext(previousNode.getNext());
 			previousNode.setNext(nodeToInsert);
 		}
+	}
+
+	public void deleteLastNode() {
+		Node previousPointer = headNode;
+		Node pointer = headNode;
+		while (pointer.getNext() != headNode) {
+			previousPointer = pointer;
+			pointer = pointer.getNext();
+		}
+		previousPointer.setNext(pointer.getNext());
 	}
 
 	private void printLinkedList() {
