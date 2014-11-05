@@ -10,7 +10,7 @@ public class CircularLinkedList {
 		addItemInLinkedList(0, 709);
 		printLinkedList();
 		deleteLastNode();
-		printLinkedList();
+		printLinkedList(); 
 	}
 
 	private void createCircularLinkedList(int[] data) {
