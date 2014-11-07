@@ -8,8 +8,6 @@ public class SinglyLinkedList {
 		createSinglyLinkedList(data);
 		printList();
 		System.out.println("Size " + getLinkedListSize());
-		addItemInLinkedList(0, 709);
-		printList();
 	}
 
 	private void createSinglyLinkedList(int[] data) {
@@ -86,7 +84,11 @@ public class SinglyLinkedList {
 		return "";
 	}
 
-	private class Node {
+	public Node getHeadNode() {
+		return headNode;
+	}
+
+	public static class Node {
 
 		private int data;
 		private Node next;
